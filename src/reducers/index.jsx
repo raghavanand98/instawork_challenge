@@ -1,4 +1,4 @@
-import { ADD_USER, LIST_SCREEN, ADD_SCREEN } from '../constants';
+import { ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER } from '../constants';
 import { combineReducers } from 'redux';
 import { reducer as forms } from 'redux-form';
 
@@ -14,9 +14,26 @@ const users = (state = [], action) => {
     case ADD_USER:
       users = [...state, user(action)];
       return users;
+    case EDIT_USER:
+      //console.log(state, "action", action);
+      for(let i=0; i < state.length; i++) {
+        if(state[i].id == action.user.id) {
+          state[i] = action.user;
+          break;
+        }
+      }
+
+      return state;
     default:
       return state;
   }
+}
+
+const currentUser = (state = [], action) => {
+  if(action.type === EDIT_SCREEN) {
+    return action.user;
+  }
+  return state;
 }
 
 const page = (state = [], action) => {
@@ -25,6 +42,8 @@ const page = (state = [], action) => {
       return LIST_SCREEN;
     case ADD_SCREEN:
       return ADD_SCREEN;
+    case EDIT_SCREEN:
+      return EDIT_SCREEN;
     default:
       return null;
   }
@@ -32,4 +51,4 @@ const page = (state = [], action) => {
     
 
 
-export default combineReducers({ form: forms, users, page });
+export default combineReducers({ form: forms, users, page, currentUser });

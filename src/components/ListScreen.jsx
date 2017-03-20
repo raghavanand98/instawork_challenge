@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { goToAdd } from '../actions';
+import { goToAdd, goToEdit } from '../actions';
 import { connect } from 'react-redux';
 
 
@@ -14,7 +14,7 @@ class ListScreen extends Component {
         {
           users.map(user => {
             return (
-              <li key={user.id} >
+              <li key={user.id} onClick= {() => this.props.goToEdit(user.id) } >
                 { user.firstName + ' ' + user.lastName + ' ' + user.email + ' ' + user.phonenumber }
               </li>
             )
@@ -33,6 +33,7 @@ class ListScreen extends Component {
       <div>
         ListScreen
         { this.renderUsers(users) }
+        There are { users.length } users
         <button onClick={ () => this.props.goToAdd() }>Add</button>
       </div>
     )
@@ -45,4 +46,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {goToAdd})(ListScreen);
+export default connect(mapStateToProps, {goToAdd, goToEdit})(ListScreen);

@@ -1,9 +1,9 @@
-import AddUserForm from './form/';
+import EditUserForm from './form/';
 import React, { Component } from 'react';
 import { goToList } from '../actions';
 import { connect } from 'react-redux';
 
-class AddScreen extends Component {
+class EditScreen extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,7 +14,7 @@ class AddScreen extends Component {
     }
     return (
       <div>
-        <AddUserForm  />
+        <EditUserForm id={this.props.currentUser} />
         <button onClick={ () => this.props.goToList() }> List </button>
 
       </div>
@@ -23,5 +23,12 @@ class AddScreen extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  //console.log("state", state);
+  return {
+    users: state.users,
+    currentUser: state.currentUser
+  }
+}
 
-export default connect(null, {goToList})(AddScreen);
+export default connect(mapStateToProps, {goToList})(EditScreen);

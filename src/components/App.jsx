@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { goToList, goToAdd } from '../actions';
-import { LIST_SCREEN, ADD_SCREEN } from '../constants';
+import { LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN } from '../constants';
 import ListScreen from './ListScreen';
 import AddScreen from './AddScreen';
+import EditScreen from './EditScreen';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
         App { page }
         <ListScreen display={page === LIST_SCREEN}/>
         <AddScreen display={page === ADD_SCREEN}/>
+        <EditScreen display={page === EDIT_SCREEN} />
       </div>
     )
   }
