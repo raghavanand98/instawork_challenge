@@ -9,16 +9,14 @@ class UserForm extends Component {
     this.props = props;
   }
 
-  renderUsers() {
-    const { users } = this.props;
-  }
 
   render() {
     const {
-       fullName, handleSubmit, pristine, submitting, users
+       fullName, handleSubmit, pristine, submitting, firstName, lastName
     } = this.props;
       
     return (
+      <div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>First Name</label>
@@ -48,6 +46,7 @@ class UserForm extends Component {
           <button type="submit" disabled={pristine || submitting}>Submit</button>
         </div>
       </form>
+      </div>
     )
   }
 }
@@ -68,7 +67,7 @@ UserForm = connect(
       lastName,
       phonenumber,
       email,
-      users: state.users
+      page: state.page
     }
   },
   { addUser }

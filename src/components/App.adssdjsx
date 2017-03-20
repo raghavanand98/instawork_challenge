@@ -1,0 +1,39 @@
+import React, { Component } from 'react';
+import  { connect } from 'react-redux';
+import AddScreen from './AddScreen';
+import ListScreen from './ListScreen';
+import { goToList, goToAdd } from '../actions';
+import { LIST_SCREEN, ADD_SCREEN } from '../constants';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  render() {
+    const  { page } = this.props;
+    console.log(page);
+    return (
+      <div>
+        <AddScreen display = {true}/>
+      <ListScreen display={ page === LIST_SCREEN }/>
+      <button onClick={goToAdd}> Add </button>
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  if(state.page === null) {
+    return {
+      page: LIST_SCREEN
+    }
+  }
+  return {
+    page: state.page
+  }
+}
+
+export default connect(mapStateToProps, {goToAdd, goToList})(App);
+

@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
-import AddScreen from './AddScreen/';
+import { connect } from 'react-redux';
+//import { goToList, goToAdd } from '../actions';
+import { LIST_SCREEN, ADD_SCREEN } from '../constants';
+import ListScreen from './ListScreen';
+import AddScreen from './AddScreen';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      text: ''
-    }
   }
 
   render() {
+    const { page } = this.props;
+
     return (
-      <AddScreen />
+      <div>
+        App { page }
+        <ListScreen display={page === LIST_SCREEN}/>
+        <AddScreen display={page === ADD_SCREEN}/>
+      </div>
     )
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  //console.log("state", state);
+  if(state.page === null) {
+    return {
+      page: LIST_SCREEN
+    }
+  }
+  return {
+    page: state.page
+  }
+}
 
+export default connect(mapStateToProps)(App);

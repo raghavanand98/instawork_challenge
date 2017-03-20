@@ -1,4 +1,4 @@
-import { ADD_USER } from '../constants';
+import { ADD_USER, LIST_SCREEN, ADD_SCREEN } from '../constants';
 import { combineReducers } from 'redux';
 import { reducer as forms } from 'redux-form';
 
@@ -13,12 +13,23 @@ const users = (state = [], action) => {
   switch(action.type) {
     case ADD_USER:
       users = [...state, user(action)];
-      //console.log(users);
       return users;
     default:
       return state;
   }
 }
 
+const page = (state = [], action) => {
+  switch(action.type) {
+    case LIST_SCREEN:
+      return LIST_SCREEN;
+    case ADD_SCREEN:
+      return ADD_SCREEN;
+    default:
+      return null;
+  }
+}
+    
 
-export default combineReducers({ form: forms, users});
+
+export default combineReducers({ form: forms, users, page });
