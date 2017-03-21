@@ -5,6 +5,7 @@ import { LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN } from '../constants';
 import ListScreen from './ListScreen';
 import AddScreen from './AddScreen';
 import EditScreen from './EditScreen';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -15,11 +16,14 @@ class App extends Component {
     const { page } = this.props;
 
     return (
-      <div>
-        App { page }
-        <ListScreen display={page === LIST_SCREEN}/>
-        <AddScreen display={page === ADD_SCREEN}/>
-        <EditScreen display={page === EDIT_SCREEN} />
+      <div className="container">
+        <div className="row">
+          <div className="col s5 offset-s4 m-t-sm">
+            <ListScreen display={page === LIST_SCREEN}/>
+            <AddScreen display={page === ADD_SCREEN}/>
+            <EditScreen display={page === EDIT_SCREEN} />
+          </div>
+        </div>
       </div>
     )
   }

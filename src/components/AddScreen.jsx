@@ -13,11 +13,20 @@ class AddScreen extends Component {
       return null;
     }
     return (
-      <div>
-        <AddUserForm  />
-        <button onClick={ () => this.props.goToList() }> List </button>
-
-      </div>
+        <div className="row">
+          <div className="row ">
+            <div className="col s1 offset-s11 center-align">
+              <i className="material-icons blue-text cursor" onClick={ () => this.props.goToList() }>close</i>
+            </div>
+            <div className="col s10">
+              <h5 className="blue-text text-darken-6">Add a team member</h5>
+              <span className="blue-text text-darken-4">Set email, location and role</span>
+            </div>
+          </div>
+          <div className="row">
+            <AddUserForm />
+          </div>
+        </div>
 
     );
   }

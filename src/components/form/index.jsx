@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addUser, editUser } from '../../actions';
+import './form.css';
 
 class Form extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Form extends Component {
       return this.props.editUser(user);
     }
   }
+
 
   render() {
     let user = { firstName: null,
@@ -31,39 +33,75 @@ class Form extends Component {
         }
         edit = true;
       }
-      console.log(user);
+      //console.log(user);
     }
     
     return (
       <div>
-        <form onSubmit={ () => this.formAction(edit, user) }>
-          This is the form
+        <form 
+          className="userForm"
+          id="userForm"
+          onSubmit={ () => this.formAction(edit, user) }
+        >
           <div>
-            <label>First Name</label>
             <div>
-              <input name="firstName" type="text" placeholder="First Name" onChange={ (event) => user.firstName = event.target.value } defaultValue={user.firstName || ''}/>
+              <input 
+                name="firstName" 
+                type="text" 
+                placeholder="First Name" 
+                onChange={ (event) => user.firstName = event.target.value } 
+                defaultValue={user.firstName || ''} 
+                required 
+                pattern="[a-zA-Z]+" 
+                onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") }
+                onInput = { (event) => event.target.setCustomValidity('') } 
+              />
             </div>
           </div>
           <div>
-            <label>Last Name</label>
             <div>
-              <input placeholder="Last Name" onChange={ (event) => user.lastName= event.target.value } defaultValue={user.lastName || ''}/>
+              <input 
+                placeholder="Last Name" 
+                onChange={ (event) => user.lastName= event.target.value } 
+                defaultValue={user.lastName || ''}
+                required 
+                pattern="[a-zA-Z]+" 
+                onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") } 
+                onInput = { (event) => event.target.setCustomValidity('') } 
+              />
             </div>
           </div>
           <div>
-            <label>Email</label>
             <div>
-              <input name="email" type="email" placeholder="Email" onChange={ (event) => user.email = event.target.value } defaultValue={user.email || ''}/>
+              <input 
+                name="email" 
+                type="email" 
+                placeholder="Email" 
+                onChange={ (event) => user.email = event.target.value } 
+                required
+                defaultValue={user.email || ''}
+              />
             </div>
           </div>
           <div>
-            <label>Phone Number</label>
             <div>
-              <input name="phonenumber" placeholder="Phone Number"  onChange={ (event) => user.phonenumber = event.target.value } defaultValue={user.phonenumber || ''}/>
+              <input 
+                name="phonenumber" 
+                placeholder="Phone Number"  
+                onChange={ (event) => user.phonenumber = event.target.value } 
+                defaultValue={user.phonenumber || ''}
+                required 
+                pattern="(\+\(\d+\))?(\d{3}-\d{3}-\d{4}|\d+)" 
+                onInvalid={ (event) => event.target.setCustomValidity("Phone number must be only digits, or of the form xxx-xxxx-xxx. If you are using a country code, put it at the beginning in the format +(xx)") } 
+                onInput = { (event) => event.target.setCustomValidity('') } 
+              />
             </div>
           </div>
           <div>
-            <button>Submit</button>
+            <button 
+              type="submit" 
+      className="waves-effect waves-light btn">Save
+            </button>
           </div>
         </form>
       </div>

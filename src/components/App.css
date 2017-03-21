@@ -1,0 +1,30 @@
+body {
+  background-color: lighten(#ccc, 50%);
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.m-t-sm {
+  margin-top: 15px;
+}
+
+.auto-overflow {
+  overflow: auto;
+}
+
+.height-max {
+  max-height: 65vh;
+}
+
+.material-icons.md-48 { font-size: 48px; height: 48px; width: 48px; }
+
