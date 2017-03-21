@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser, editUser } from '../../actions';
+import { addUser, editUser, deleteUser, goToList } from '../../actions';
 import './form.css';
 
 class Form extends Component {
@@ -18,10 +18,12 @@ class Form extends Component {
 
 
   render() {
-    let user = { firstName: null,
+    let user = { 
+      firstName: null,
       lastName: null,
       email: null,
-      phonenumber: null
+      phonenumber: null,
+      isAdmin: false
     }
     let edit = false;
 
@@ -43,6 +45,8 @@ class Form extends Component {
           id="userForm"
           onSubmit={ () => this.formAction(edit, user) }
         >
+          <hr />
+          <p className="blue-text text-lighten-2 medium-text">Info</p>
           <div>
             <div>
               <input 
@@ -98,10 +102,47 @@ class Form extends Component {
             </div>
           </div>
           <div>
-            <button 
-              type="submit" 
-      className="waves-effect waves-light btn">Save
-            </button>
+          <p className="blue-text text-lighten-2 medium-text">Role</p>
+            <p>
+              <input 
+                className="with-gap" 
+                name="role" 
+                type="radio" 
+                id="regular"  
+                defaultChecked= { !user.isAdmin } 
+                onChange={ (event) => user.isAdmin = false }
+              />
+              <label htmlFor="regular">Regular - Can't delete members</label>
+            </p>
+            <p>
+              <input 
+                className="with-gap" 
+                name="role" 
+                type="radio" 
+                id="admin"  
+                defaultChecked={ user.isAdmin } 
+                onChange={ (event) => user.isAdmin = true }
+              />
+              <label htmlFor="admin">Admin - Can delete members</label>
+            </p>
+            <div className="row">
+
+              <div className="col s6">
+                { (edit == true)
+                  ?  <button 
+                      onClick = { () => this.props.deleteUser(user) && this.props.goToList() }
+                      className="waves-effect waves-light btn">Delete
+                    </button>
+                    : <p />
+                }
+              </div>
+              <div className="col s6">
+                <button 
+                  type="submit" 
+                  className="waves-effect waves-light btn">Save
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -116,6 +157,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { addUser, editUser } )(Form);
+export default connect(mapStateToProps, { addUser, editUser, deleteUser, goToList } )(Form);
 
 

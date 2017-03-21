@@ -8,6 +8,13 @@ class ListScreen extends Component {
     super(props);
   }
 
+  adminString(isAdmin) {
+    if(isAdmin) {
+      return ' (admin)';
+    }
+    return '';
+  }
+
   renderUsers(users) {
     return (
       <ul className="collection">
@@ -17,14 +24,14 @@ class ListScreen extends Component {
               <li 
                 key={user.id} 
                 onClick= {() => this.props.goToEdit(user.id) } 
-                className="collection-item cursor hoverable"
+                className="collection-item cursor hoverable li-hover"
               >
                 <div className="row valign-wrapper">
-                  <div className="col s3 valign">
-                    <i className="material-icons md-48">account_circle</i>
+                  <div className="col s2 valign">
+                    <i className="material-icons md-36">account_circle</i>
                   </div>
-                  <div className="col s9 valign">
-                    <span className="title">{ user.firstName + ' ' + user.lastName }</span><br />
+                  <div className="col s10 valign">
+                    <span className="title">{ user.firstName + ' ' + user.lastName + this.adminString(user.isAdmin) }</span><br />
                     { user.phonenumber }<br />
                     { user.email }
                   </div>

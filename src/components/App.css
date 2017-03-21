@@ -26,5 +26,8 @@ body {
   max-height: 65vh;
 }
 
-.material-icons.md-48 { font-size: 48px; height: 48px; width: 48px; }
+.material-icons.md-36 { font-size: 36px; height: 36px; width: 36px; }
 
+.li-hover:hover {
+  color: #0d47a1;
+}

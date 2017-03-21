@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col s5 offset-s4 m-t-sm">
+          <div className="col m4 offset-m4 s10 offset-s1 m-t-sm">
             <ListScreen display={page === LIST_SCREEN}/>
             <AddScreen display={page === ADD_SCREEN}/>
             <EditScreen display={page === EDIT_SCREEN} />

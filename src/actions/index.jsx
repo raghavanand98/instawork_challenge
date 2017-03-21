@@ -1,4 +1,4 @@
-import { ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER } from '../constants';
+import { DELETE_USER, ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER } from '../constants';
 
 export const addUser = (user) => {
   const action = {
@@ -11,6 +11,14 @@ export const addUser = (user) => {
 export const editUser = (user) => {
   const action = {
     type: EDIT_USER,
+    user
+  }
+  return action;
+}
+
+export const deleteUser = (user) => {
+  const action = {
+    type: DELETE_USER,
     user
   }
   return action;

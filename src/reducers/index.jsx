@@ -1,4 +1,4 @@
-import { ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER } from '../constants';
+import { DELETE_USER, ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER } from '../constants';
 import { combineReducers } from 'redux';
 import { reducer as forms } from 'redux-form';
 
@@ -15,15 +15,29 @@ const users = (state = [], action) => {
       users = [...state, user(action)];
       return users;
     case EDIT_USER:
-      //console.log(state, "action", action);
-      for(let i=0; i < state.length; i++) {
-        if(state[i].id == action.user.id) {
-          state[i] = action.user;
+      users = [...state]
+      for(let i=0; i < users.length; i++) {
+        if(users[i].id == action.user.id) {
+          users[i] = action.user;
           break;
         }
       }
 
-      return state;
+      return users;
+    case DELETE_USER:
+
+      let index = -1;
+      users = [...state]
+      for(let i=0; i < users.length; i++) {
+        if(users[i].id == action.user.id) {
+          index = i;
+          break;
+        }
+      }
+      if (index > -1) {
+        users.splice(index, 1);
+      }
+      return users;
     default:
       return state;
   }
