@@ -12,7 +12,7 @@ const users = (state = [], action) => {
   let users = null;
   switch(action.type) {
     case ADD_USER:
-      users = [...state, user(action, state.length)];
+      users = [...state, user(action, state.length+1)];
       return users;
     case EDIT_USER:
       users = [...state]

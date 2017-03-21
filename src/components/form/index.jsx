@@ -36,7 +36,6 @@ class Form extends Component {
           <hr />
           <p className="blue-text text-lighten-2 medium-text">Info</p>
           <div>
-            <div>
               <input 
                 name="firstName" 
                 type="text" 
@@ -48,10 +47,8 @@ class Form extends Component {
                 onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") }
                 onInput={ (event) => event.target.setCustomValidity('') } 
               />
-            </div>
           </div>
           <div>
-            <div>
               <input 
                 placeholder="Last Name" 
                 onChange={ (event) => user.lastName= event.target.value } 
@@ -61,10 +58,8 @@ class Form extends Component {
                 onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") } 
                 onInput={ (event) => event.target.setCustomValidity('') } 
               />
-            </div>
           </div>
           <div>
-            <div>
               <input 
                 name="email" 
                 type="email" 
@@ -73,10 +68,8 @@ class Form extends Component {
                 required
                 defaultValue={user.email || ''}
               />
-            </div>
           </div>
           <div>
-            <div>
               <input 
                 name="phonenumber" 
                 placeholder="Phone Number"  
@@ -85,9 +78,10 @@ class Form extends Component {
                 required 
                 pattern="(\+\(\d+\))?(\d{3}-\d{3}-\d{4}|\d+)" 
                 onInvalid={ (event) => event.target.setCustomValidity("Phone number must be only digits, or of the form xxx-xxxx-xxx. If you are using a country code, put it at the beginning as +(xx)") } 
+                onInput={ (event) => event.target.setCustomValidity('') } 
               />
-            </div>
           </div>
+
           <div>
           <p className="blue-text text-lighten-2 medium-text">Role</p>
             <p>
@@ -112,9 +106,9 @@ class Form extends Component {
               />
               <label htmlFor="admin">Admin - Can delete members</label>
             </p>
-            <div className="row">
 
-              <div className="col s6">
+            <div className="row m-bt">
+              <div className="col s4">
                 { (edit === true)
                     ?  <button 
                           onClick={ () => this.props.deleteUser(user) && this.props.goToList() }
@@ -123,7 +117,7 @@ class Form extends Component {
                     : <p />
                 }
               </div>
-              <div className="col s6">
+              <div className="col s4 offset-s4">
                 <button 
                   type="submit" 
                   className="waves-effect waves-light btn">Save
@@ -148,7 +142,6 @@ class Form extends Component {
 }
 
 function mapStateToProps(state) {
-  //console.log("state", state);
   return {
     users: state.users
   }
