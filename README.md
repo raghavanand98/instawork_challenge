@@ -1,3 +1,14 @@
+## Note About the App
+I learnt React and Redux while building the App, so the structure of the App may not conform to best practices. That being said, the App is functional, and I would appreciate any feedback about my usage or React/Redux. 
+
+The app can be run using  ```
+                          npm start
+                          ```
+
+Thanks! 
+
+
+## React Default Docs
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
