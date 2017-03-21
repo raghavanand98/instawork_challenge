@@ -4,18 +4,6 @@ import { addUser, editUser, deleteUser, goToList } from '../../actions';
 import './form.css';
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  formAction(edit, user) {
-    if(!edit) {
-      return this.props.addUser(user);
-    } else {
-      return this.props.editUser(user);
-    }
-  }
-
 
   render() {
     let user = { 
@@ -30,7 +18,7 @@ class Form extends Component {
     const user_id = this.props.id;
     if(user_id) {
       for(let possibleUser of this.props.users) {
-        if(possibleUser.id == user_id) {
+        if(possibleUser.id === user_id) {
           user = possibleUser;
         }
         edit = true;
@@ -58,7 +46,7 @@ class Form extends Component {
                 required 
                 pattern="[a-zA-Z]+" 
                 onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") }
-                onInput = { (event) => event.target.setCustomValidity('') } 
+                onInput={ (event) => event.target.setCustomValidity('') } 
               />
             </div>
           </div>
@@ -71,7 +59,7 @@ class Form extends Component {
                 required 
                 pattern="[a-zA-Z]+" 
                 onInvalid={ (event) => event.target.setCustomValidity("Name can consist only of letters") } 
-                onInput = { (event) => event.target.setCustomValidity('') } 
+                onInput={ (event) => event.target.setCustomValidity('') } 
               />
             </div>
           </div>
@@ -96,8 +84,7 @@ class Form extends Component {
                 defaultValue={user.phonenumber || ''}
                 required 
                 pattern="(\+\(\d+\))?(\d{3}-\d{3}-\d{4}|\d+)" 
-                onInvalid={ (event) => event.target.setCustomValidity("Phone number must be only digits, or of the form xxx-xxxx-xxx. If you are using a country code, put it at the beginning in the format +(xx)") } 
-                onInput = { (event) => event.target.setCustomValidity('') } 
+                onInvalid={ (event) => event.target.setCustomValidity("Phone number must be only digits, or of the form xxx-xxxx-xxx. If you are using a country code, put it at the beginning as +(xx)") } 
               />
             </div>
           </div>
@@ -109,7 +96,7 @@ class Form extends Component {
                 name="role" 
                 type="radio" 
                 id="regular"  
-                defaultChecked= { !user.isAdmin } 
+                defaultChecked={ !user.isAdmin } 
                 onChange={ (event) => user.isAdmin = false }
               />
               <label htmlFor="regular">Regular - Can't delete members</label>
@@ -128,11 +115,11 @@ class Form extends Component {
             <div className="row">
 
               <div className="col s6">
-                { (edit == true)
-                  ?  <button 
-                      onClick = { () => this.props.deleteUser(user) && this.props.goToList() }
-                      className="waves-effect waves-light btn">Delete
-                    </button>
+                { (edit === true)
+                    ?  <button 
+                          onClick={ () => this.props.deleteUser(user) && this.props.goToList() }
+                          className="waves-effect waves-light btn">Delete
+                        </button>
                     : <p />
                 }
               </div>
@@ -148,6 +135,16 @@ class Form extends Component {
       </div>
     )
   }
+
+  formAction(edit, user) {
+    if(!edit) {
+      return this.props.addUser(user);
+    } else {
+      return this.props.editUser(user);
+    }
+  }
+
+
 }
 
 function mapStateToProps(state) {

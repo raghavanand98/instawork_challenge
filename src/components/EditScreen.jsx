@@ -4,10 +4,6 @@ import { goToList } from '../actions';
 import { connect } from 'react-redux';
 
 class EditScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
   render() {
     if(!this.props.display) {
       return null;

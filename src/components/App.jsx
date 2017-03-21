@@ -8,15 +8,11 @@ import EditScreen from './EditScreen';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { page } = this.props;
 
     return (
-      <div className="container">
         <div className="row">
           <div className="col m4 offset-m4 s10 offset-s1 m-t-sm">
             <ListScreen display={page === LIST_SCREEN}/>
@@ -24,7 +20,6 @@ class App extends Component {
             <EditScreen display={page === EDIT_SCREEN} />
           </div>
         </div>
-      </div>
     )
   }
 }

@@ -2,9 +2,9 @@ import { DELETE_USER, ADD_USER, LIST_SCREEN, ADD_SCREEN, EDIT_SCREEN, EDIT_USER 
 import { combineReducers } from 'redux';
 import { reducer as forms } from 'redux-form';
 
-const user = (action) => {
+const user = (action, id) => {
   let user = action.user;
-  user.id = Math.random();
+  user.id = id;
   return user;
 }
 
@@ -12,12 +12,12 @@ const users = (state = [], action) => {
   let users = null;
   switch(action.type) {
     case ADD_USER:
-      users = [...state, user(action)];
+      users = [...state, user(action, state.length)];
       return users;
     case EDIT_USER:
       users = [...state]
       for(let i=0; i < users.length; i++) {
-        if(users[i].id == action.user.id) {
+        if(users[i].id === action.user.id) {
           users[i] = action.user;
           break;
         }
@@ -29,7 +29,7 @@ const users = (state = [], action) => {
       let index = -1;
       users = [...state]
       for(let i=0; i < users.length; i++) {
-        if(users[i].id == action.user.id) {
+        if(users[i].id === action.user.id) {
           index = i;
           break;
         }

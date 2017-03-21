@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 
 
 class ListScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   adminString(isAdmin) {
     if(isAdmin) {
@@ -23,8 +20,8 @@ class ListScreen extends Component {
             return (
               <li 
                 key={user.id} 
-                onClick= {() => this.props.goToEdit(user.id) } 
-                className="collection-item cursor hoverable li-hover"
+                onClick={() => this.props.goToEdit(user.id) } 
+                className="collection-item cursor hoverable li-hover auto-overflow"
               >
                 <div className="row valign-wrapper">
                   <div className="col s2 valign">
